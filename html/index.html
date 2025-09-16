@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>KS Trading Cards</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="app">
+        <div id="pack-result" class="hidden">
+            <h1 id="pack-title">Pack Opened!</h1>
+
+            <div id="collection-controls" class="hidden">
+                <input type="text" id="search-name" placeholder="Search by name...">
+                <select id="filter-rarity">
+                    <option value="all">All Rarities</option>
+                    <option value="Common">Common</option>
+                    <option value="Rare">Rare</option>
+                    <option value="Epic">Epic</option>
+                    <option value="Legendary">Legendary</option>
+                    <option value="Mythic">Mythic</option>
+                </select>
+                <select id="sort-by">
+                    <option value="name">Sort by Name</option>
+                    <option value="rarity">Sort by Rarity</option>
+                    <option value="amount">Sort by Amount</option>
+                </select>
+            </div>
+
+            <div id="cards"></div>
+            <button id="close-btn">Close</button>
+        </div>
+        <div id="notifications"></div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

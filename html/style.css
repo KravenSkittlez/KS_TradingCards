@@ -1,0 +1,22 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: rgba(0,0,0,0.8);
+    color: white;
+    text-align: center;
+}
+#pack-result { margin-top: 50px; }
+#cards { display: flex; justify-content: center; gap: 10px; margin: 20px auto; flex-wrap: wrap; }
+.card { padding: 10px; border-radius: 8px; background: #222; min-width: 120px; text-align: center; box-shadow: 0 0 10px rgba(255,255,255,0.2); }
+.card-img { width: 100px; height: auto; border-radius: 6px; margin-bottom: 5px;}
+.hidden { display: none; }
+#notifications { position: fixed; bottom: 20px; right: 20px; max-width: 300px; }
+.notification { padding: 10px; margin-top: 5px; border-radius: 6px; background: #333; opacity: 0.9; }
+.notification.success { background: green; }
+.notification.info { background: blue; }
+.notification.error { background: red; }
+button { padding: 8px 16px; margin-top: 20px; border: none; border-radius: 6px; background: #555; color: white; cursor: pointer; }
+button:hover { background: #777; }
+#collection-controls { margin: 10px auto; display: flex; justify-content: center; gap: 10px; }
+#collection-controls select, #search-name { padding: 6px; border-radius: 6px; border: none; font-size: 14px; }
+#search-name { width: 150px; }
