@@ -1,11 +1,16 @@
 fx_version 'cerulean'
 game 'gta5'
 
-author 'KravenSkittlez'
-description 'Trading Card System with Packs, UI & Debug Tools'
-version '1.0.0'
+author 'KravynSkitLZ'
+description 'KS Trading Cards'
+version '1.1.0'
 
 lua54 'yes'
+
+dependencies {
+    'oxmysql',
+    'ox_inventory'
+}
 
 shared_scripts {
     'config.lua'
@@ -24,7 +29,8 @@ ui_page 'html/index.html'
 
 files {
     'html/index.html',
-    'html/style.css',
-    'html/script.js',
-    'html/images/*.png'
+    'html/*.*',
+    'html/css/*.*',
+    'html/js/*.*',
+    'html/img/*.*'
 }

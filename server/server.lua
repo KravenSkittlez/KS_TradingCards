@@ -1,6 +1,7 @@
 -- ks_tradingcards/server/server.lua
 -- Core trading card logic (production-safe, with SQL persistence)
 
+local QBCore = exports['qb-core']:GetCoreObject()
 local oddsFile = "data/odds.json"
 
 CreateThread(function()
@@ -166,6 +167,7 @@ RegisterNetEvent("ks_tradingcards:requestCollection", function()
                     id = cardId,
                     name = def.name,
                     rarity = def.rarity,
+                    image = def.image,
                     amount = amount
                 })
             end
@@ -186,29 +188,42 @@ CreateThread(function()
     end
 end)
 
--- Usable items (ox_inventory example)
-if GetResourceState("ox_inventory") == "started" then
-    exports.ox_inventory:registerUsableItem("pack_standard", function(data, slot)
-        local src = data.source
+-- Usable items (QBCore)
+CreateThread(function()
+    -- Wait for QBCore to be ready
+    while not QBCore do
+        Wait(100)
+    end
+    
+    QBCore.Functions.CreateUseableItem("pack_standard", function(source, item)
+        local src = source
+        local Player = QBCore.Functions.GetPlayer(src)
+        if not Player then return end
+        
         local pack = Config.PackById["standard"]
         if not pack then return end
 
         local ok, cards = OpenPackForPlayer(src, pack)
         if ok then
-            exports.ox_inventory:RemoveItem(src, "pack_standard", 1, nil, slot.slot)
+            Player.Functions.RemoveItem("pack_standard", 1)
+            TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items["pack_standard"], "remove")
             TriggerClientEvent("ks_tradingcards:openPackResult", src, pack, cards)
         end
     end)
 
-    exports.ox_inventory:registerUsableItem("pack_premium", function(data, slot)
-        local src = data.source
+    QBCore.Functions.CreateUseableItem("pack_premium", function(source, item)
+        local src = source
+        local Player = QBCore.Functions.GetPlayer(src)
+        if not Player then return end
+        
         local pack = Config.PackById["premium"]
         if not pack then return end
 
         local ok, cards = OpenPackForPlayer(src, pack)
         if ok then
-            exports.ox_inventory:RemoveItem(src, "pack_premium", 1, nil, slot.slot)
+            Player.Functions.RemoveItem("pack_premium", 1)
+            TriggerClientEvent('inventory:client:ItemBox', src, QBCore.Shared.Items["pack_premium"], "remove")
             TriggerClientEvent("ks_tradingcards:openPackResult", src, pack, cards)
         end
     end)
-end
+end)

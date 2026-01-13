@@ -3,7 +3,7 @@
 # KS Trading Cards
 
 A FiveM resource that adds **collectible trading cards**, **pack opening**, **player collections**, and an in-game **UI** with sorting, filtering, and search.
-Built for **oxmysql** and optionally integrates with **ox\_inventory**.
+Built for **oxmysql** and integrates with **QBCore**.
 
 ---
 
@@ -44,7 +44,8 @@ ks_tradingcards/
 │
 └─sql/
      ks_tradingcards.sql     -- Database schema
-     ks_items.sql            -- Example ox_inventory items
+     ks_items.sql            -- Legacy ox_inventory items (deprecated)
+     qbcore_items.lua        -- QBCore items format
 ```
 
 ---
@@ -54,12 +55,16 @@ ks_tradingcards/
 1. **Database**
 
    * Import `sql/ks_tradingcards.sql` to create the collection/inventory tables.
-   * If using ox\_inventory, also import `sql/ks_items.sql` to add pack & card items.
 
-2. **Dependencies**
+2. **Items Setup**
+
+   * Copy the items from `sql/qbcore_items.lua` and add them to your `qb-core/shared/items.lua` file.
+   * Make sure to add the item images to your inventory resource's images folder.
+
+3. **Dependencies**
 
    * [oxmysql](https://github.com/overextended/oxmysql)
-   * Optional: [ox\_inventory](https://github.com/overextended/ox_inventory) for usable pack items.
+   * [qb-core](https://github.com/qbcore-framework/qb-core)
 
 3. **Resource**
 
