@@ -32,5 +32,5 @@ files {
     'html/*.*',
     'html/css/*.*',
     'html/js/*.*',
-    'html/img/*.*'
+    'html/images/*.*'
 }
